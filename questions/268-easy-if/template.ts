@@ -1,3 +1,4 @@
+//Checks if C is assignable to true, then takes returns the corresponding value
 export type If<C extends boolean, T, F> = C extends true ? T : F
 
 

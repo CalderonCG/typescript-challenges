@@ -1,3 +1,4 @@
+//Splits the first element from the rest of elements, and then return that infer
 export type First<T extends any[]> = T extends [infer First, ... infer Rest] ? First : never
 
 

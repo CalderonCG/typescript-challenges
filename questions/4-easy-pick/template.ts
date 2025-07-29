@@ -1,3 +1,4 @@
+//Compares the key of each element with the value, if it's different it replaces to never, deleting the key
 export type MyPick<T, K extends keyof T> = {
     [key in keyof T as key extends K? key: never ]: T[key]
 }
