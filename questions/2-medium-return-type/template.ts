@@ -1,3 +1,5 @@
+
+//Infer the structure of the function with arguments
 export type MyReturnType<T> = T extends (...args: any) => infer X ? X : false
 
 
