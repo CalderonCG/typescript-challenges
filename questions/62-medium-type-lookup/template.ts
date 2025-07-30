@@ -1,4 +1,5 @@
-export type LookUp<U, T> = any
+//Checks if U contains a type with T as the value, if doesnt then deletes that object with never
+export type LookUp<U, T> = U extends {type: T} ? U : never
 
 
 interface Cat {
@@ -12,4 +13,4 @@ interface Dog {
   color: 'brown' | 'white' | 'black'
 }
 
-type MyDogType = LookUp<Cat | Dog, 'dog'> // expected to be `Dog`
+type MyDogType = LookUp<Dog|Cat, 'dog'> // expected to be `Dog`
