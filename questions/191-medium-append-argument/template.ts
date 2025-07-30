@@ -1,4 +1,7 @@
-export type AppendArgument<Fn, A> = Fn extends (infer args) => any ? (args: any, x: A) => any: ''
+//Destructures into parameters and return to keep that type
+export type AppendArgument<Fn, A> = Fn extends (...args: infer Args) => infer X ?
+//Destructures the parameters and adds the parameter x
+ (...args: [...Args,  x:A]) => X : ''
 
 type Fn = (a: number, b: string) => number
 
