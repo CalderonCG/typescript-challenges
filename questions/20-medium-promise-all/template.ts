@@ -1,5 +1,9 @@
-export declare function PromiseAll(values: any): a
+export declare function PromiseAll<T extends any[]>(values: readonly [...T]):
+  Promise<{ [K in keyof T]: T[K] extends Promise<infer R> ? R : T[K] }>;
 
+  
+type RecursivelyUnwrapPromise<T>= T extends PromiseLike<infer Val> ?
+RecursivelyUnwrapPromise<Val>: T
 
 const promise1 = Promise.resolve(3)
 const promise2 = 42
