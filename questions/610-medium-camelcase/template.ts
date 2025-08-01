@@ -12,12 +12,12 @@
 //Logic got too complex, let's refactor
 
 //Extends checks explicitly for the - now
-export type CamelCase<S>= S extends `${infer Head}-${infer Dash}${infer Rest}`
+export type CamelCase<S>= S extends `${infer First}-${infer Dash}${infer Rest}`
     ? Dash extends '-' //Checks if after the first - there is another -
-      ? `${Head}-${CamelCase<`-${Rest}`>}` //If there is then it doesnt remove the first -
+      ? `${First}-${CamelCase<`-${Rest}`>}` //If there is then it doesnt remove the first -
       //Checks if Dash is lower or uppercase, if it is uppercase then adds the - back
       //If it is lowercase then proceeds with the camelcase iteration 
-      : `${Head}${Dash extends Lowercase<Dash> ? Uppercase<Dash> : `-${Dash}`}${CamelCase<Rest>}`
+      : `${First}${Dash extends Lowercase<Dash> ? Uppercase<Dash> : `-${Dash}`}${CamelCase<Rest>}`
     : S;
 
 
