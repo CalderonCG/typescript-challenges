@@ -1,5 +1,8 @@
 
+//This type inverts the order of a tuple
+type Invert<T extends unknown[]>= T extends [...infer Rest, infer Last] ? [Last, ...Invert<Rest>] : []
 
+type ab = Invert<[1,3,4]>
 
 //This type builds a tuple of 0 with the length of the passed number
 type numberToTuple<U extends number, T extends unknown[] = []> =
@@ -29,9 +32,9 @@ type IsSorted<T extends number[]> =
     : true;
 
 // Recursively apply bubble sort until sorted
-export type Sort<T extends number[]> =
+export type Sort<T extends number[], U extends boolean = false> =
 //If is sorted returns false then iterates with bubble sort again
-  IsSorted<T> extends true ? T : Sort<BubbleSort<T>>;
+  IsSorted<T> extends true ? U extends true? Invert<T>: T : Sort<BubbleSort<T>, U>;
 
 type Sorted = Sort<[3,2,1,7,5,4,5]>
 
