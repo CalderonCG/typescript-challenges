@@ -24,6 +24,9 @@ const todo: MyReadonly2<Todo, 'title' | 'description'> = {
   completed: false,
 }
 
-todo.title = 'Hello' // Error: cannot reassign a readonly property (Working properly)
-todo.description = 'barFoo' // Error: cannot reassign a readonly property (Working properly)
+
 todo.completed = true // OK 
+//@ts-expect-error Error: cannot reassign a readonly property (Working properly)
+todo.title = 'Hello' 
+//@ts-expect-error Error: cannot reassign a readonly property (Working properly)
+todo.description = 'barFoo' 

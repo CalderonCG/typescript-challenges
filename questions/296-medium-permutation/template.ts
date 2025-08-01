@@ -10,7 +10,7 @@
 
 //U works just as a comparison variable
 export type Permutation<T, U = T> =
-  [T] extends [never]  
+  [T] extends [never]  //Base case for when the type runs out of elements
     ? [] 
     : U extends T //If U = the T in this iteration
       ? [U, ...Permutation<Exclude<T, U>>] //It adds itself and then calls permutation without that value
