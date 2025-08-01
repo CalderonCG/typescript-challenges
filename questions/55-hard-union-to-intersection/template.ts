@@ -1,9 +1,9 @@
-export type UnionToIntersection<T, U = T> =
-  [T] extends [never]  //Base case for when the type runs out of elements
-    ? T
-    : U extends T //If U = the T in this iteration
-      ? U & UnionToIntersection<T> //It adds itself and then calls permutation without that value
-      : never;
+export type UnionToIntersection<T> =
+  UnionToFunction<T> extends (a: infer T) => unknown   ?
+  T: never
+
+   type UnionToFunction<T>= T extends T?
+   (a: T) => unknown : never
 
 
 
